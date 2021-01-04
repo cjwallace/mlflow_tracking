@@ -6,26 +6,31 @@ from sklearn.ensemble import RandomForestClassifier
 
 from scripts.data import X_train, X_test, y_train, y_test
 
-MAX_DEPTH = 3
-N_ESTIMATORS = 20
+parser = argparse.ArgumentParser()
+parser.add_argument('--max-depth', type=int, default=3)
+parser.add_argument('--n-estimators', type=int, default=20)
+args = parser.parse_args()
 
 with mlflow.start_run():
 
     mlflow.log_params({
-      'max_depth': MAX_DEPTH,
-      'n_estimators': N_ESTIMATORS
+        'max_depth': args.max_depth,
+        'n_estimators': args.n_estimators
     })
   
-    # A random forest classifier.
     scaler = StandardScaler()
-    rf = RandomForestClassifier(n_estimators=N_ESTIMATORS, max_depth=MAX_DEPTH)
+    
+    rf = RandomForestClassifier(
+        max_depth=args.max_depth,
+        n_estimators=args.n_estimators
+    )
 
     pipe = make_pipeline(scaler, rf)
     pipe.fit(X_train, y_train)
 
     mlflow.log_metrics({
-      'train_accuracy': pipe.score(X_train, y_train),
-      'test_accuracy': pipe.score(X_test, y_test)
+        'train_accuracy': pipe.score(X_train, y_train),
+        'test_accuracy': pipe.score(X_test, y_test)
     })
 
     mlflow.sklearn.log_model(pipe,'models')
