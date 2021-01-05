@@ -96,8 +96,12 @@ To run with a different number of neighbors, pass a command line argument like s
 If the code was imported as an Applied Machine Learning Prototype, the declarative project will have run each training script once, with default hyperparameters.
 Feel free to run the scripts some additional times, passing different hyperparameters.
 
-## Investigating the results
+## Viewing the MLFlow UI
 
 Since our training scripts were instrumented with MLFlow, the parameters, metrics, models and additional metadata associated with any training runs will have been logged in the `mlruns` directory.
 We can investigate the performance metrics for each run using MLFlow's UI.
-The automated setup will have created a CML Application called "MLFlow UI" that can be visited from the Applications tab of CML.
+The automated setup will have created a CML Application called "MLFlow UI" that can be visited from the Applications tab of CML, and will look something like this.
+
+![MLFlow UI in CML](docs/images/mlflow-ui.png)
+
+We can now interact with the MLFLow UI as if it were running on our local machine to compare model training runs.
