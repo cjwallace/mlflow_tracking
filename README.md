@@ -18,7 +18,7 @@ The rest of this README is structured as follows.
 - [Viewing the MLFlow UI](#viewing-the-mlflow-ui).
   Using the MLFlow UI to view the training logs.
 
-## 1. Repository structure
+## Repository structure
 
 The folder structure of this repo is as follows
 
