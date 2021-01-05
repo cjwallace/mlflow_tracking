@@ -7,16 +7,18 @@
 In particular MLFlow's experiment tracking capabilities offer a low-friction way of tracking model hyperparameters and metrics across many experiments.
 This repository demonstrates the use of MLFlow tracking in a couple of simple machine learning model training scripts inside Cloudera Machine Learning (CML) and Cloudera Data Science Workbench (CDSW).
 (We will refer only to CML in the remainder of this README, but the code should function equally well in either CML or CDSW).
-This functions as less a tutorial on MLFlow, and more an example of running MLFlow inside CML.
+The repository is intended as less a tutorial on MLFlow, and more an example of running MLFlow inside CML.
 
 The rest of this README is structured as follows.
 
-1. **Repository structure**. A brief orientation to the structure of the repository.
-2. **Running through the analysis**. How to run model training and testing, logging experimental results with MLFlow.
-3. **Investigating the results**. Using the MLFlow UI to investigate the results.
+- [Repository structure](#repository-structure).
+  A brief orientation to the structure of this repository.
+- [Running training scripts](#running-training-scripts).
+  Instructions and setup for running model training and testing, logging experimental results with MLFlow.
+- [Viewing the MLFlow UI](#viewing-the-mlflow-ui).
+  Using the MLFlow UI to view the training logs.
 
-
-## Structure
+## 1. Repository structure
 
 The folder structure of this repo is as follows
 
@@ -27,7 +29,7 @@ The folder structure of this repo is as follows
 ```
 
 When the training scripts have been run (this will happen on project launch if using the CML Applied ML Prototype interface), an additional `mlruns` directory will appear for use by MLFlow.
-This can be redirected to another location (HDFS, for instance) 
+This can be redirected to another location (HDFS, for instance)
 
 ### cml
 
@@ -51,7 +53,7 @@ scripts
 └── train_random_forest.py  # train a random forest classifier
 ```
 
-## Running through the analysis
+## Running training scripts
 
 If this repo is imported as an Applied Machine Learning Prototype in CML, the launch process should handle all the setup for you, and you can skip the Installation step.
 In case you want to run through it manually, follow the instructions in the Installation section below.
@@ -74,7 +76,7 @@ Instead, inside a Python 3 session, simply run
 !pip3 install -r requirements.xt
 ```
 
-### Scripts
+### Training
 
 Inside the `scripts/` directory are three scripts, as described above.
 The `data.py` script creates a fake dataset for a supervised classification problem.
