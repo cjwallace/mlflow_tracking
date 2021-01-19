@@ -1,6 +1,6 @@
 name: MLFlow Tracking
 description: Instrumenting some scikit-learn models with MLFLow for experiment tracking.
-author: Cloudera Engineer
+author: Cloudera Inc.
 specification_version: 1.0
 prototype_version: 1.0
 date: "2020-12-09"
