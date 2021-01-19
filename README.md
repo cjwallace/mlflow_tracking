@@ -60,17 +60,8 @@ In case you want to run through it manually, follow the instructions in the Inst
 
 ### Installation
 
-The code was developed for Python 3.6.9, and will likely work on more later versions.
-To install dependencies, first create and activate a new virtual environment through your preferred means, then pip install from the requirements file. For instance:
-
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-If you are working in CML or CDSW, no virtual environment is necessary.
-Instead, inside a Python 3 session, simply run
+The code was developed against Python 3.6.9, and will likely work on more later versions.
+Inside a CML Python 3 session, simply run
 
 ```
 !pip3 install -r requirements.xt
@@ -107,3 +98,14 @@ The automated setup will have created a CML Application called "MLFlow UI" that 
 ![MLFlow UI in CML](docs/images/mlflow-ui.png)
 
 We can now interact with the MLFLow UI as if it were running on our local machine to compare model training runs.
+
+You can start the MLFlow UI manually inside a session with
+
+```bash
+!mlflow ui --port $CDSW_READONLY_PORT
+```
+
+The UI will be listed in the nine-dot menu in the upper right corner of the session interface.
+Clicking it will open a new browser tab with the UI.
+When launched in a session, the UI will block other uses of the session, and will be closed when the session closes.
+It's not recommended to run two simultaneous copies of the MLFlow interface (i.e. both as an Application and inside a session).
