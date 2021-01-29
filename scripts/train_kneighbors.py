@@ -49,7 +49,7 @@ from scripts.data import X_train, X_test, y_train, y_test
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--n-neighbors", type=int, default=5)
-args = parser.parse_args()
+args, _ = parser.parse_known_args()
 
 
 with mlflow.start_run():
