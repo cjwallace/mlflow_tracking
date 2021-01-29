@@ -6,6 +6,12 @@ prototype_version: 1.0
 date: "2020-12-09"
 api_version: 1
 
+environment_variables:
+  PYTHONPATH:
+    default: "/home/cdsw"
+    description: "Allow Python to find scripts directory when run as CLI"
+    prompt_user: false
+
 tasks:
   - type: create_job
     name: Install Dependencies
