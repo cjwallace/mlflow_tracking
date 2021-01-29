@@ -27,8 +27,8 @@ tasks:
     
   - type: run_job
     entity_label: install_dependencies
-    short_summary: Running install dependencies job.
-    long_summary: Running install dependencies job.
+    short_summary: Run the install dependencies job.
+    long_summary: Run the install dependencies job.
 
   - type: create_job
     name: Train KNeighbors
@@ -37,7 +37,7 @@ tasks:
     arguments: None
     cpu: 1
     memory: 2
-    short_summary: Train a k-nearest neighbors classifier.
+    short_summary: Create a training job for a k-nearest neighbors classifier.
     environment:
       TASK_TYPE: CREATE/RUN_JOB
     kernel: python3
@@ -45,7 +45,7 @@ tasks:
   - type: run_job
     entity_label: train_kneighbors
     short_summary: Training a knn algorithm.
-    long_summary: Training a k-nearest neighbors algorithm for classification on a fake dataset.
+    long_summary: Train a k-nearest neighbors algorithm for classification on a fake dataset.
     
   - type: create_job
     name: Train Random Forest
@@ -54,21 +54,21 @@ tasks:
     arguments: None
     cpu: 1
     memory: 2
-    short_summary: Train a random forest classifier.
+    short_summary: Create a training job for a random forest classifier.
     environment:
       TASK_TYPE: CREATE/RUN_JOB
     kernel: python3
     
   - type: run_job
     entity_label: train_random_forest
-    short_summary: Training a random forest algorithm.
+    short_summary: Train a random forest algorithm.
     long_summary: Training a random forest algorithm for classification on a fake dataset.
     
   - type: start_application
     name: MLFlow UI
     subdomain: mlflow
     script: cml/mlflow_ui.py
-    short_summary: Lauching MLFlow UI application
+    short_summary: Launch the MLFlow UI application
     environment_variables:
       TASK_TYPE: START_APPLICATION
     kernel: python3
