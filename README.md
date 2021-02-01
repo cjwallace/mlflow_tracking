@@ -64,7 +64,7 @@ The code was developed against Python 3.6.9, and will likely work on more later 
 Inside a CML Python 3 session, simply run
 
 ```
-!pip3 install -r requirements.xt
+!pip3 install -r requirements.txt
 ```
 
 ### Training
