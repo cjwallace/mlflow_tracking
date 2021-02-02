@@ -53,6 +53,12 @@ scripts
 └── train_random_forest.py  # train a random forest classifier
 ```
 
+There are three ways to launch this project on CML:
+
+1. **From Prototype Catalog** - Navigate to the Prototype Catalog on a CML workspace, select the "MLflow Tracking" tile, click "Launch as Project", click "Configure Project"
+2. **As ML Prototype** - In a CML workspace, click "New Project", add a Project Name, select "ML Prototype" as the Initial Setup option, copy in the [repo URL](https://github.com/cloudera/CML_AMP_MLflow_Tracking.git), click "Create Project", click "Configure Project"
+3. **Manual Setup** - In a CML workspace, click "New Project", add a Project Name, select "Git" as the Initial Setup option, copy in the [repo URL](https://github.com/cloudera/CML_AMP_MLflow_Tracking.git), click "Create Project". Launch a Python3 Workbench Session with at least 2GB of memory and 1vCPU. Then follow the instructions below, in order.
+
 ## Running training scripts
 
 If this repo is imported as an Applied Machine Learning Prototype in CML, the launch process should handle all the setup for you, and you can skip the Installation step.
@@ -67,6 +73,12 @@ Inside a CML Python 3 session, simply run
 !pip3 install -r requirements.txt
 ```
 
+In order for Python to pick up the `scripts` directory when running from the command line (see below), we must set an environment variable for the project, setting the `PYTHONPATH` to the root directory of the project.
+Unless you have specifically cloned the project into a different location, this will be `/home/cdsw`.
+See the [instructions for setting project-level environment variables in CML](https://docs.cloudera.com/machine-learning/cloud/engines/topics/ml-environment-variables.html).
+Alternately, type `export PYTHONPATH=/home/cdsw` in a session terminal.
+
+
 ### Training
 
 Inside the `scripts/` directory are three scripts, as described above.
@@ -74,20 +86,27 @@ The `data.py` script creates a fake dataset for a supervised classification prob
 When working with genuine business data, we'd probably be reading this data from a database or flat file storage.
 
 There are two training scripts.
-`train_kneighbors.py` trains a k-nearest neighbors algorithm, where the number of neighbors to consider is provided as a command line argument.
-`train_random_forest.py` trains a random forest, and we expose two hyperparameters&mdash;the maximum tree depth and number of trees&mdash;as command line arguments.
+
+- `train_kneighbors.py` trains a k-nearest neighbors algorithm, where the number of neighbors to consider is provided as a command line argument.
+- `train_random_forest.py` trains a random forest, and we expose two hyperparameters&mdash;the maximum tree depth and number of trees&mdash;as command line arguments.
+
 Each script is instrumented with MLflow to log the hyperparameters used and the accuracy of the trained model on a train and test set.
 
-To train the k-nearest neighbors model, start a CML session and run `!python3 train_kneighbors.py` in the session Python prompt, or without the bang (`!`) in the session terminal.
+To train the k-nearest neighbors model, start a CML session and run `!python3 scripts/train_kneighbors.py` in the session Python prompt, or without the bang (`!`) in the session terminal.
 This will train the model with the default (5) nearest neighbors.
 To run with a different number of neighbors, pass a command line argument like so:
 
 ```bash
-!python3 train_kneighbors.py --n-neighbors 3
+!python3 scripts/train_kneighbors.py --n-neighbors 3
 ```
 
-If the code was imported as an Applied Machine Learning Prototype, the declarative project will have run each training script once, with default hyperparameters.
+If the code was imported as an Applied Machine Learning Prototype, the declarative project will have set up a job for each training script, and executed each once, using the default hyperparameters.
 Feel free to run the scripts some additional times, passing different hyperparameters.
+This can be done in any of three ways:
+
+1. By re-running the jobs after changing the default hyperparameter values in the script.
+2. Interactively in a Python session.
+3. At the command line in a session terminal, as described above.
 
 ## Viewing the MLflow UI
 
